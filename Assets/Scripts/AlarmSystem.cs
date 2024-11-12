@@ -19,7 +19,7 @@ public class AlarmSystem : MonoBehaviour
 
     private void Awake()
     {
-        _audioSource = gameObject.GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _audioClip;
         _audioSource.volume = _volume;
     }
@@ -57,7 +57,7 @@ public class AlarmSystem : MonoBehaviour
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_volumeChangeInterval);
 
-        while (_volume != targetVolume)
+        while (Mathf.Approximately(_volume, targetVolume) == false)
         {
             _volume = Mathf.MoveTowards(_volume, targetVolume, _volumeChangeRate);
             _audioSource.volume = _volume;

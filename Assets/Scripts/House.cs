@@ -12,6 +12,9 @@ public class House : MonoBehaviour
             HouseEntryDetected?.Invoke(this);       
     }
 
-    private void OnTriggerExit(Collider other) => 
-        HouseExitDetected?.Invoke(this);
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<Player>(out Player _))
+            HouseExitDetected?.Invoke(this);
+    }
 }
